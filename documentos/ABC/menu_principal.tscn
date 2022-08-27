@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://menu_principal.gd" type="Script" id=1]
 [ext_resource path="res://assets/back_7.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://medieval sound.mp3" type="AudioStream" id=15]
 [ext_resource path="res://assets/back_3.png" type="Texture" id=16]
 [ext_resource path="res://assets/back_4.png" type="Texture" id=17]
+[ext_resource path="res://assets/flying_dragon-gold.png" type="Texture" id=18]
 [ext_resource path="res://assets/back_5.png" type="Texture" id=19]
 [ext_resource path="res://assets/back_6.png" type="Texture" id=20]
 [ext_resource path="res://assets/back_8.png" type="Texture" id=21]
@@ -45,6 +46,38 @@ animations = [ {
 
 [sub_resource type="LargeTexture" id=3]
 
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "dragão"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11 ]
+}
+
 [node name="Node2D" type="Node2D"]
 position = Vector2( 0, -36 )
 scale = Vector2( 0.802981, 0.807698 )
@@ -59,7 +92,7 @@ autoplay = true
 position = Vector2( 954.032, 578.805 )
 scale = Vector2( 1.01176, 1.00537 )
 frames = SubResource( 4 )
-frame = 10
+frame = 11
 playing = true
 
 [node name="Castledell" type="Sprite" parent="."]
@@ -71,6 +104,7 @@ texture = ExtResource( 8 )
 position = Vector2( 159.406, 489.044 )
 scale = Vector2( 2.50485, 2.0098 )
 frames = SubResource( 1 )
+frame = 2
 playing = true
 
 [node name="play_button" type="TextureButton" parent="."]
@@ -106,6 +140,21 @@ texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 14 )
 expand = true
 stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+"anims/dragão" = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 493.162, 775.042 )
+scale = Vector2( 1.24536, 1.23809 )
+texture = ExtResource( 18 )
+hframes = 3
+vframes = 4
+frame = 2
+__meta__ = {
+"_edit_group_": true
+}
 
 [connection signal="pressed" from="play_button" to="." method="_on_play_button_pressed"]
 [connection signal="mouse_entered" from="config_button" to="." method="_on_config_button_mouse_entered"]

@@ -8,5 +8,3 @@ func _on_config_button_pressed():#leva para o menu do jogo, onde é possível fa
 
 func _on_quit_button_pressed():#essa função fecha o jogo
 	get_tree().quit()
-
-
